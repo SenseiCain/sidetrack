@@ -6,7 +6,7 @@ STEP - 1
         /-   Comments: description
         /-   Votes: need a way to denote 'up votes' & 'down votes'
     *   /Set up relations
-    *   Set up validations
+    *   /Set up validations
     *   Create seed data
     *   TEST :)
 
