@@ -1,4 +1,12 @@
 module PostsHelper
+    def display_posts(posts)
+        html = posts.map do |p|
+            display_post p
+        end.join('')
+
+        raw(html)
+    end
+
     def display_post(post)
 
         if post.comments.any?
@@ -16,7 +24,7 @@ module PostsHelper
             comments_html = nil
         end
 
-        raw("
+        "
             <p>
                 <ul>
                     <li>Title: #{ post.title }</li>
@@ -25,6 +33,6 @@ module PostsHelper
                     #{ comments_html}
                 </ul>
             </p>
-        ")
+        "
     end
 end
