@@ -20,6 +20,7 @@ end
         user: User.all.sample
     )
 
+    # GENERATE CATEGORIES
     categories = []
     Random.new.rand(3).times do |i|
         categories << Category.all.sample
@@ -27,12 +28,19 @@ end
 
     post.categories << categories
 
+    # GENERATE UPVOTES & DOWNVOTES
     if i > 10
         Vote.create_upvote(User.all.sample, post)
         Vote.create_upvote(User.all.sample, post)
     else
         Vote.create_downvote(User.all.sample, post)
         Vote.create_downvote(User.all.sample, post)
+    end
+
+    # GENERATE COMMENTS
+    Random.new.rand(3).times do |i|
+        post.comments.build(description: 'test', user: User.all.sample)
+        post.save
     end
 end
 
