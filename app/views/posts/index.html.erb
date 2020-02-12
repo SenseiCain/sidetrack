@@ -1,1 +1,10 @@
-<%= display_posts @posts %>
+<div id="main" style="display: flex">
+    <div style="flex: 2">
+        <%= display_posts @posts %>
+    </div>
+    <div style="display: flex; flex: 1; justify-content: center">
+        <div style="width: 50%; border: 1px solid black; height: 200px">
+            <%= link_to 'Create a new post', new_post_path %>
+        </div>
+    </div>
+</div>
