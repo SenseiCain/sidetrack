@@ -25,14 +25,18 @@ module PostsHelper
         end
 
         "
-            <p>
-                <ul>
-                    <li>Title: #{ post.title }</li>
-                    <li>Description: #{ post.description }</li>
-                    <li>Vote count: #{ post.votes.count }</li>
-                    #{ comments_html}
-                </ul>
-            </p>
+            <div class='row'>
+                <div class='col-md-1'>
+                    <div class='row>
+                        <h5 class='text-center'>#{ post.votes.count }</h5>
+                    </div>
+                </div>
+                <div class='col-md-11'>
+                    <h4>#{ post.title }</h4>
+                    
+                    <p> #{ post.comments.count } Comments - #{ post.user.name } - #{ post.created_at } </p>
+                </div>
+            </div>
         "
     end
 end
