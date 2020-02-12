@@ -1,10 +1,19 @@
-<%= @posts.each do |p| %>
+<% @posts.each do |p| %>
     <p>
         <ul>
-            <li><%= p.title %></li>
-            <li><%= p.description %></li>
-            <li><%= p.votes.count %></li>
-            <li><%= p.comments.first.description %></li>
+            <li>Title: <%= p.title %></li>
+            <li>Description: <%= p.description %></li>
+            <li>Vote count: <%= p.votes.count %></li>
+
+            <% if p.comments.any? %>
+                <li style="list-style-type: none">
+                    <ul>
+                        <% p.comments.each do |c| %>
+                            <li><%= c.user.name %> - <%= c.description %></li>
+                        <% end %>
+                    </ul>
+                </li>
+            <% end %>
         </ul>
     </p>
 <% end %>
