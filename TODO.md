@@ -7,8 +7,8 @@ STEP - 1
         /-   Votes: need a way to denote 'up votes' & 'down votes'
     *   /Set up relations
     *   /Set up validations
-    *   Create seed data
-    *   TEST :)
+    *   /Create seed data
+    *   CHECK VALIDATIONS FOR UNIQUE VOTE ON POST BY USER
 
 STEP - 2
     *   Create Contollers
