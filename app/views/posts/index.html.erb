@@ -1,8 +1,10 @@
 <div id="main" class="row">
-    <div class="col-md-9 bg-info">
-        <%= display_posts @posts %>
+    <div class="col-md-9">
+        <% @posts[1..4].each do |p| %>
+            <%= display_post_tag(p) %>
+        <% end %>
     </div>
-    <div class="col-md-3 bg-info">
+    <div class="col-md-3">
         <%= link_to 'Create a new post', new_post_path %>
     </div>
 </div>
