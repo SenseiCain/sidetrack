@@ -36,9 +36,9 @@ module PostsHelper
 
         def vote_tag(type)
             if type == 'up'
-                content_tag(:span, nil, class: 'small glyphicon glyphicon-chevron-up')
+                content_tag(:span, nil, class: 'fas fa-angle-up')
             else
-                content_tag(:span, nil, class: 'small glyphicon glyphicon-chevron-down')
+                content_tag(:span, nil, class: 'fas fa-angle-down')
             end
         end
 
