@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+    @categories = Category.all
+    @dates = ['Past week', 'Past month', 'Past year']
   end
 
   def show
