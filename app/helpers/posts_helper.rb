@@ -25,7 +25,7 @@ module PostsHelper
 
         def vote
             content = safe_join([vote_tag('up'), count_tag, vote_tag('down')])
-            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center m-0 p-0 border')
+            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between mx-0 px-0 py-1 border')
         end
         
         def count_tag
