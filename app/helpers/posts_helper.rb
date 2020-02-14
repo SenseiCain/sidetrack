@@ -24,14 +24,22 @@ module PostsHelper
         delegate :link_to, :content_tag, :image_tag, :raw, :safe_join, to: :view
 
         def vote
-            content = count_tag
-            content_tag(:div, content, class: 'col-md-1 d-flex justify-content-center align-items-center bg-info m-0 p-0')
+            content = safe_join([vote_tag('up'), count_tag, vote_tag('down')])
+            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center m-0 p-0 border')
         end
         
         def count_tag
             # Upvote & Downvote
             # Vote count
-            content_tag(:h5, @post.votes.count)
+            content_tag(:div, @post.votes.count)
+        end
+
+        def vote_tag(type)
+            if type == 'up'
+                content_tag(:span, nil, class: 'small glyphicon glyphicon-chevron-up')
+            else
+                content_tag(:span, nil, class: 'small glyphicon glyphicon-chevron-down')
+            end
         end
 
         def main
