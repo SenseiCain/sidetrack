@@ -64,8 +64,23 @@ module PostsHelper
 
         def info_tag
             # Comments - User - Created @
-            content = "#{@post.comments.count} Comments - #{@post.user.name} - #{@post.created_at}"
+            content = "#{@post.comments.count} Comments - #{@post.user.name} - #{format_date}"
             content_tag(:p, content, class: 'small my-0')
+        end
+
+        def format_date
+            @date = @post.created_at.to_date
+
+            if @date.between?(1.month.ago.to_date, Date.today)
+                days = (Date.today - @date).to_i
+                days.to_s + 'D ago'
+            elsif @date.between?(1.year.ago.to_date, 1.month.ago.to_date)
+                months = (Date.today - @date).to_i / 30
+                months.to_s + 'M ago'
+            else
+                years = (Date.today - @date).to_i / 365
+                years.to_s + 'Y ago'
+            end
         end
     end
 end
