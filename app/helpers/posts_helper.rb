@@ -1,3 +1,5 @@
+include Rails.application.routes.url_helpers
+
 module PostsHelper
     # REFERENCE ARTICLE - https://www.toptal.com/ruby-on-rails/rails-helper-bootstrap-carousel
 
@@ -49,7 +51,8 @@ module PostsHelper
 
         def title_tag
             # Post title
-            content_tag(:h5, @post.title, class: 'my-0')
+            header_tag = content_tag(:h5, @post.title, class: 'my-0')
+            content_tag(:a, header_tag, class: 'my-0', style: 'text-decoration: none; color: inherit', href: post_path(@post))
         end
 
         def categories_tag
