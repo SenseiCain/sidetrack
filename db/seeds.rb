@@ -20,7 +20,7 @@ end
         title: Faker::Marketing.buzzwords,
         description: Faker::Movies::Lebowski.quote,
         user: User.all.sample,
-        created_at: Time.at(Time.now - rand * (Time.now.to_f - Time.local(2019, 7, 1).to_f))
+        created_at: Time.at(Time.now - rand * (Time.now.to_f - Time.local(2019, 12, 1).to_f))
     )
 
     # GENERATE CATEGORIES
