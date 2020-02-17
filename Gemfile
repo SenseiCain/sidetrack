@@ -20,6 +20,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem "bootstrap_form", "~> 4.0"
+
 gem 'faker'
 
 # Reduces boot times through caching; required in config/boot.rb
