@@ -15,7 +15,9 @@
     <div class='row'>
       <div class="col d-flex align-items-center">
         <i class="fas fa-lg fa-dog pr-2"></i>
-        <h3 class="m-0"><a href="/" style="text-decoration:none; color: inherit" class='text-black'>Sidetrack</a></h3>
+        <h3 class="m-0">
+          <%= content_tag(:a, 'Sidetrack', href: root_path, style: "text-decoration:none; color: inherit", class: 'text-black') %>
+        </h3>
       </div>
     </div>
   </header>
