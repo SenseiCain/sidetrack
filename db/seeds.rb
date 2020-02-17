@@ -14,10 +14,13 @@ end
 end
 
 20.times do |i|
+    rand_time = 
+
     post = Post.create(
         title: Faker::Marketing.buzzwords,
         description: Faker::Movies::Lebowski.quote,
-        user: User.all.sample
+        user: User.all.sample,
+        created_at: Time.at(Time.now - rand * (Time.now.to_f - Time.local(2019, 7, 1).to_f))
     )
 
     # GENERATE CATEGORIES
@@ -44,3 +47,6 @@ end
     end
 end
 
+def time_rand
+    Time.at(from + rand * (Time.now.to_f - Time.local(2018, 1, 1).to_f))
+end
