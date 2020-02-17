@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.custom_filter(params[:query])
     @categories = Category.all
     @dates = ['Past week', 'Past month', 'Past year']
   end
@@ -25,9 +25,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+    
   end
 
   def update
+    byebug
   end
 
   def destroy

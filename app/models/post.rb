@@ -10,6 +10,16 @@ class Post < ApplicationRecord
     validates :title, presence: true
     validates :description, presence: true
 
+    def self.custom_filter(query)
+        if query
+            if query[:categories]
+                Post.joins(:categories).where(categories: {id: query[:categories]})
+            end
+        else
+            Post.all
+        end
+    end
+
     private
 
     def make_post_title_case
