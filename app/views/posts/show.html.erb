@@ -1,10 +1,12 @@
-<h3><%= @post.title %></h3>
-<p><%= @post.description %></p>
-<ul>
-    <% @post.categories.each do |c| %>
-        <li><%= c.name%></li>
-    <% end %>
-</ul><br>
+<div>
+    <h3 class="border"><%= @post.title %></h3>
+    <p><%= @post.description %></p>
+    <ul>
+        <% @post.categories.each do |c| %>
+            <li><%= c.name%></li>
+        <% end %>
+    </ul>
+</div>
 
 <h4>Comments</h4>
 <ul>

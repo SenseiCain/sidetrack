@@ -62,7 +62,7 @@ module PostsHelper
 
         def categories_tag
             content_div = @post.categories.map{|c| 
-                content_tag :div, class: 'small px-1 mr-1 my-0 bg-info rounded text-white' do
+                content_tag :span, class: 'badge badge-info mr-1 text-white' do
                     link_to c.name, "/?query[categories]=#{c.id}", style: 'text-decoration: none; color: white', class: 'py-0'
                 end
             }
