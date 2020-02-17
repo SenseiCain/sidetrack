@@ -54,7 +54,7 @@ module PostsHelper
 
         def categories_tag
             # Post categories that link to their filtered index
-            content = @post.categories.map{|c| content_tag(:div, c.name, class: 'small px-1 py-0 mr-1 my-0 bg-info rounded')}
+            content = @post.categories.map{|c| content_tag(:div, c.name, class: 'small px-1 py-0 mr-1 my-0 bg-info rounded text-white')}
             content_tag(:div, safe_join(content), class: 'd-flex')
         end
 
