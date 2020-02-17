@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @categories = Category.all
     @post = Post.find_by_id(params[:id])
   end
 
@@ -30,7 +31,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    byebug
   end
 
   def destroy
