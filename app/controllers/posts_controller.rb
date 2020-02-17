@@ -9,9 +9,19 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
+    @categories = Category.all
   end
 
   def create
+    @post = Post.new(post_params)
+    @post.user = User.first
+
+    if @post.save
+      redirect_to root_path
+    else
+      render new_post_path
+    end
   end
 
   def edit
@@ -21,5 +31,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :description, :category_ids => [])
   end
 end

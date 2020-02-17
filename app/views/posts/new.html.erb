@@ -1,2 +1,11 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<%= form_for @post do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+
+    <%= f.label :description %><br>
+    <%= f.text_area :description %><br>
+
+    <%= collection_check_boxes(:post, :category_ids, @categories, :id, :name) %><br><br>
+
+    <%= f.submit %>
+<% end %>
