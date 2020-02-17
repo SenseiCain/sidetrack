@@ -1,0 +1,20 @@
+<div class="p-5 bg-light rounded text-center">
+    <h6>Login via</h6>
+    <div class="row my-2">
+        <div class="col-md-6 text-center bg-secondary rounded">GitHub</div>
+        <div class="col-md-6 text-center bg-primary rounded">Google</div>
+    </div>
+    <h6>OR</h6>
+    <div class="row">
+        <div class="col-md-12 px-0">
+            <%= bootstrap_form_for @user, url: login_path do |f| %>
+                <%= f.email_field :email, label_as_placeholder: true, required: true %>
+                <%= f.password_field :password, label_as_placeholder: true, required: true %>
+                <div class="form-actions text-center border-bottom pb-3">
+                    <button type="submit" class="btn btn-small bg-info">Log In</button>
+                </div>
+            <% end %>
+            <%= content_tag(:a, "Register", class: "btn btn-link px-0") %>
+        </div>
+    </div>
+</div>
