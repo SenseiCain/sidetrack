@@ -11,16 +11,18 @@
   </head>
 
   <body>
-  <header id="header" class="container bg-info mb-2">
-    <div class='row'>
-      <div class="col d-flex align-items-center">
-        <i class="fas fa-lg fa-dog pr-2"></i>
-        <h3 class="m-0">
-          <%= content_tag(:a, 'Sidetrack', href: root_path, style: "text-decoration:none; color: inherit", class: 'text-black') %>
-        </h3>
+
+    <header id="header" class="container bg-info mb-2">
+      <div class='row'>
+        <div class="col d-flex align-items-center">
+          <i class="fas fa-lg fa-dog pr-2"></i>
+          <h3 class="m-0">
+            <%= content_tag(:a, 'Sidetrack', href: root_path, style: "text-decoration:none; color: inherit", class: 'text-black') %>
+          </h3>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+
     <section class="container">
       <div id="main" class="row justify-content-between align-items-start">
         <div class="col-md-9">
@@ -28,26 +30,24 @@
         </div>
         <div class="col-md-2 border px-0 pb-2">
           <div class='row bg-info mx-0 px-0 py-2'>
-                  <%= link_to('Create a new post', new_post_path, class: 'col text-center text-white', style: 'text-decoration:none') %>
+            <%= link_to('Create a new post', new_post_path, class: 'col text-center text-white', style: 'text-decoration:none') %>
           </div>
           <div class='p-2'>
-              <div class='pb-4'>
-                  <%= form_tag root_path, :method => 'get' do |f| %>
-                      <h6>Categories:</h6>
-                      <%= collection_select(:query, :categories, @categories, :id, :name) %>
-                      <h6 class="pt-2">Date:</h6>
+            <%= form_tag root_path, :method => 'get' do |f| %>
+              <h6>Categories:</h6>
+              <%= collection_select(:query, :categories, @categories, :id, :name) %>
+              <h6 class="pt-2">Date:</h6>
 
-                      <!-- REFACTOR THIS!!! -->
-                      <select name="query[date]" id="query_date">
-                          <option value=""></option>
-                          <option value="1">Past week</option>
-                          <option value="2">Past month</option>
-                          <option value="3">Past year</option>
-                      </select>
+              <!-- REFACTOR THIS!!! -->
+              <select name="query[date]" id="query_date">
+                  <option value=""></option>
+                  <option value="1">Past week</option>
+                  <option value="2">Past month</option>
+                  <option value="3">Past year</option>
+              </select>
 
-                  </div>
-                  <%= submit_tag('Filter', class: 'col-md-12 text-center text-info') %>
-              <% end %>
+              <%= submit_tag('Filter', class: 'col-md-12 text-center text-info mt-4') %>
+            <% end %>
           </div>
         </div>
       </div>
