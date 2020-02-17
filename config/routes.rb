@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  resources :posts, only: [:show, :new, :create, :edit, :update, :destroy]
   get '/', to: 'posts#index', as: 'root'
+  resources :posts, only: [:show, :new, :create, :edit, :update, :destroy]
+  
+  get '/login', to: "sessions#new"
+  post '/login', to: "sessions#create"
+  post '/logout', to: "sessions#destroy"
 end
