@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   def index
     @posts = Post.select_by_category_and_date(params[:query])
     @categories = Category.all
-    @dates = ['Past week', 'Past month', 'Past year']
   end
 
   def show
