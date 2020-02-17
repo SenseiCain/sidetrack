@@ -1,11 +1,6 @@
-<%= form_for @post do |f| %>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %><br>
-
-    <%= f.label :description %><br>
-    <%= f.text_area :description %><br>
-
-    <%= collection_check_boxes(:post, :category_ids, @categories, :id, :name) %><br><br>
-
-    <%= f.submit %>
+<%= bootstrap_form_for @post do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_area :description %>
+    <%= collection_check_boxes(:post, :category_ids, @categories, :id, :name, {}, { class: 'ml-2 mr-1'}) %><br>
+    <%= f.submit class: 'btn btn-secondary btn-small mt-2'%>
 <% end %>
