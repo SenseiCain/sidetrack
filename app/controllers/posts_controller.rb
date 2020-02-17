@@ -1,17 +1,17 @@
 class PostsController < ApplicationController
+  before_action :set_categories
+  skip_before_action :set_categories, only: [:create, :update, :destroy]
+
   def index
     @posts = Post.select_by_category_and_date(params[:query])
-    @categories = Category.all
   end
 
   def show
-    @categories = Category.all
     @post = Post.find_by_id(params[:id])
   end
 
   def new
     @post = Post.new
-    @categories = Category.all
   end
 
   def create
@@ -39,5 +39,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :description, :category_ids => [])
+  end
+
+  def set_categories
+    @categories = Category.all
   end
 end
