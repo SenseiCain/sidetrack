@@ -1,6 +1,6 @@
 <div id="main" class="row justify-content-between align-items-start">
     <div class="col-md-9">
-        <% @posts[1..4].each do |p| %>
+        <% @posts.each do |p| %>
             <%= display_post_tag(p) %>
         <% end %>
     </div>
