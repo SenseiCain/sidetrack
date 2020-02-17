@@ -24,9 +24,21 @@
 <div id="comment-container">
     <% @post.comments.each do |c| %>
         <div class="card">
-            <div class="card-body p-2">
-                <h6 class="card-title small mb-1"><span class="text-info"><%= c.user.name %></span> - X votes - Date</h6>
-                <p class="card-text"><%= c.description %></p>
+            <div class="card-body py-2 px-0">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-1 border-right">
+                            <div class="row">
+                                <div class="col-md-12 align-items-center text-center"><%= content_tag(:span, nil, class: 'fas fa-angle-up') %></div>
+                                <div class="col-md-12 justify-content-center text-center"><%= content_tag(:span, nil, class: 'fas fa-angle-down') %></div>
+                            </div>
+                        </div>
+                        <div class="col-md-11">
+                            <h6 class="card-title small mb-1"><span class="text-info"><%= c.user.name %></span> - X votes - Date</h6>
+                            <p class="card-text"><%= c.description %></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     <% end %>
