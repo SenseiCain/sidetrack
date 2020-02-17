@@ -15,7 +15,6 @@ module PostsHelper
         end
 
         def html
-            # Joins components & renders parent div
             content = safe_join([vote, main])
             content_tag(:div, content, id: 'uid', class: 'row')
         end
@@ -27,7 +26,7 @@ module PostsHelper
 
         def vote
             content = safe_join([vote_tag('up'), count_tag, vote_tag('down')])
-            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between mx-0 px-0 py-1 border')
+            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between m-0 px-0 py-0 border')
         end
         
         def count_tag
@@ -37,38 +36,42 @@ module PostsHelper
         end
 
         def vote_tag(type)
+            @content = ''
+
             if type == 'up'
-                content_tag(:span, nil, class: 'fas fa-angle-up')
+                @content = content_tag(:span, nil, class: 'fas fa-angle-up')
             else
-                content_tag(:span, nil, class: 'fas fa-angle-down')
+                @content = content_tag(:span, nil, class: 'fas fa-angle-down')
+            end
+
+            link_to root_path, class: 'vote_btn' do
+                @content
             end
         end
 
         def main
             content = safe_join([title_tag, categories_tag, info_tag])
-            content_tag(:div, content, class: 'col-md-11 border')
+            inside = content_tag(:div, content, class: 'row')
+            content_tag(:div, inside, class: 'col-md-11 border justify-content-center')
         end
 
         def title_tag
-            # Post title
-            header_tag = content_tag(:h5, @post.title, class: 'my-0')
+            header_tag = content_tag(:h5, @post.title, class: 'my-0 col-md-12 px-0')
             content_tag(:a, header_tag, class: 'my-0', style: 'text-decoration: none; color: inherit', href: post_path(@post))
         end
 
         def categories_tag
-            # Post categories that link to their filtered index
             content_div = @post.categories.map{|c| 
-                content_tag :div, class: 'small px-1 py-0 mr-1 my-0 bg-info rounded text-white' do
-                    link_to c.name, "/?query[categories]=#{c.id}", style: 'text-decoration: none; color: white'
+                content_tag :div, class: 'small px-1 mr-1 my-0 bg-info rounded text-white' do
+                    link_to c.name, "/?query[categories]=#{c.id}", style: 'text-decoration: none; color: white', class: 'py-0'
                 end
             }
-            content_tag(:div, safe_join(content_div), class: 'd-flex')
+            content_tag(:div, safe_join(content_div), class: 'col-md-12 my-0 px-0 d-flex')
         end
 
         def info_tag
-            # Comments - User - Created @
             content = "#{@post.comments.count} Comments - #{@post.user.name} - #{format_date}"
-            content_tag(:p, content, class: 'small my-0')
+            content_tag(:p, content, class: 'col-md-12 small px-0 my-0')
         end
 
         def format_date
