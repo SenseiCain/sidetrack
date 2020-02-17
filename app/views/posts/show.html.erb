@@ -1,11 +1,18 @@
-<div>
-    <h3 class="border"><%= @post.title %></h3>
-    <p><%= @post.description %></p>
-    <ul>
-        <% @post.categories.each do |c| %>
-            <li><%= c.name%></li>
-        <% end %>
-    </ul>
+<div class="border">
+    <div class="bg-info px-2">
+        <h4><%= @post.title %></h4>
+    </div>
+    <div class="px-2">
+        <p><%= @post.description %></p>
+
+        <% content_div = @post.categories.map{|c| %>
+            <% content_tag :span, class: 'badge badge-info mr-1 text-white' do %>
+            <%     link_to c.name, "/?query[categories]=#{c.id}", style: 'text-decoration: none; color: white', class: 'py-0' %>
+            <% end %>
+        <% } %>
+        <%= content_tag(:div, safe_join(content_div), class: 'col-md-12 my-0 px-0 d-flex') %>
+    </div>
+
 </div>
 
 <h4>Comments</h4>
