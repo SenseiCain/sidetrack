@@ -10,21 +10,22 @@
             </div>
             <div class='p-2'>
                 <div class='pb-4'>
-                    <h6>Categories:</h6>
-                    <%= collection_select(:query, :categories, @categories, :id, :name) %>
-                    <h6 class="pt-2">Date:</h6>
+                    <%= form_tag root_path, :method => 'get' do |f| %>
+                        <h6>Categories:</h6>
+                        <%= collection_select(:query, :categories, @categories, :id, :name) %>
+                        <h6 class="pt-2">Date:</h6>
 
-                    <!-- REFACTOR THIS!!! -->
-                    <select name="query[date]" id="query_date">
-                        <option value=""></option>
-                        <option value="1">Past week</option>
-                        <option value="2">Past month</option>
-                        <option value="3">Past year</option>
-                    </select>
+                        <!-- REFACTOR THIS!!! -->
+                        <select name="query[date]" id="query_date">
+                            <option value=""></option>
+                            <option value="1">Past week</option>
+                            <option value="2">Past month</option>
+                            <option value="3">Past year</option>
+                        </select>
 
-                </div>
-                <%= link_to('Filter', new_post_path, class: 'col-md-12 text-center text-info') %>
-                
+                    </div>
+                    <%= submit_tag('Filter', class: 'col-md-12 text-center text-info') %>
+                <% end %>
             </div>
     </div>
 </div>
