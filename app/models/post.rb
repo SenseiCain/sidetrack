@@ -15,12 +15,12 @@ class Post < ApplicationRecord
             @category = Category.find_by(id: query[:categories])
 
             if @category && query[:date].present?
-                if query[:date] = 1
-                    Post.joins(:categories).where(categories: {id: query[:categories]}, posts: {created_at: 1.week.ago..Time.new})
-                elsif query[:date] = 2
-                    Post.joins(:categories).where(categories: {id: query[:categories]}, posts: {created_at: 1.month.ago..Time.new})
+                if query[:date].to_i == 1
+                    Post.joins(:categories).where(categories: {id: query[:categories]}, posts: {created_at: 1.week.ago..Time.now})
+                elsif query[:date].to_i == 2
+                    Post.joins(:categories).where(categories: {id: query[:categories]}, posts: {created_at: 1.month.ago..Time.now})
                 else
-                    Post.joins(:categories).where(categories: {id: query[:categories]}, posts: {created_at: 1.year.ago..Time.new})
+                    Post.joins(:categories).where(categories: {id: query[:categories]}, posts: {created_at: 1.year.ago..Time.now})
                 end
             elsif @category
                 Post.joins(:categories).where(categories: {id: query[:categories]})
