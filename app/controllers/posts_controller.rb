@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
   before_action :set_categories, :set_user
-  skip_before_action :set_categories, only: [:create, :update, :destroy]
-  skip_before_action :set_user, only: [:create, :update, :destroy]
+  skip_before_action :set_categories, only: [:destroy]
+  skip_before_action :set_user, only: [:destroy]
 
   def index
     @posts = Post.select_by_category_and_date(params[:query])
@@ -19,12 +19,16 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user = User.first
+    @post.user = @user
 
     if @post.save
-      redirect_to root_path
+      redirect_to post_path(@post)
     else
-      render new_post_path
+      if @user
+        render new_post_path
+      else
+        redirect_to login_path
+      end
     end
   end
 
