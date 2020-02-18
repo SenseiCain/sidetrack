@@ -3,17 +3,6 @@ include Rails.application.routes.url_helpers
 module PostsHelper
     # REFERENCE ARTICLE - https://www.toptal.com/ruby-on-rails/rails-helper-bootstrap-carousel
 
-    def display_user_or_login(user)
-        if user
-            span_tag = content_tag(:span, user.name, class: 'text-info')
-            content = safe_join(["Comment as ", span_tag])
-            content_tag(:h6, content, class: 'small')
-        else
-            content = link_to 'Login', login_path, { class: 'text-info' }
-            content_tag(:h6, content, class: 'small')
-        end
-    end
-
     def display_post_tag(post)
         PostTag.new(self, post).html
     end
@@ -26,7 +15,7 @@ module PostsHelper
 
         def html
             content = safe_join([vote, main])
-            content_tag(:div, content, id: @uid, class: 'row')
+            content_tag(:div, content, id: @uid, class: 'row m-0')
         end
 
         private
@@ -99,4 +88,5 @@ module PostsHelper
             end
         end
     end
+
 end

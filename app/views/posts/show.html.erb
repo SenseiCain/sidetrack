@@ -1,28 +1,35 @@
-<div class="border pb-3 mb-4">
-    <div class="bg-info px-2">
-        <h4 class="text-white" ><%= @post.title %></h4>
+<div class="container border">
+    <div class="row border-bottom">
+        <div class="col-md-1 border-right"></div>
+        <div class="col-md-11">
+            <div class="border-bottom p-2 small">
+                <%= @post.title %>
+            </div>
+            <div class="p-2 text-muted small">
+                <%= @post.description %>
+            </div>
+        </div>
     </div>
-    <div class="px-2">
-        <p><%= @post.description %></p>
-
-        <% content_div = @post.categories.map{|c| %>
-            <% content_tag :span, class: 'badge badge-info mr-1 text-white' do %>
-            <% link_to c.name, "/?query[categories]=#{c.id}", style: 'text-decoration: none; color: white', class: 'py-0' %>
-            <% end %>
-        <% } %>
-        <%= content_tag(:div, safe_join(content_div), class: 'col-md-12 my-0 px-0 d-flex') %>
+    <div class="row p-2 border-bottom small">
+        <p class="p-0 m-0">By <span class="text-info"><%= @post.user.name %></span></p>
     </div>
-
+    <div class="row">
+        <div class="col-md-12 px-0">
+            <form action="" accept-charset="UTF-8" method="get">
+                <div class="input-group align-items-center">
+                    <input type="text" name="search" id="search" placeholder="Comment.." class="form-control border-none py-0 form-control-sm">
+                    <span class="input-group-btn">
+                        <input type="submit" name="commit" value="Submit" class="btn btn-transparent btn-small text-info py-0 form-control-sm" data-disable-with="Search">
+                    </span> 
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-<!-- REFACTOR THIS!!! -->
-<%= display_user_or_login(@user) %>
 
 
 
-<%= bootstrap_form_for @comment, url: post_path(@post) do |f| %>
-    <%= f.text_area :description, hide_label: true, placeholder: "Leave a comment...", class: 'my-1' %>
-    <%= f.submit class: 'btn btn-secondary btn-small p-1 my-1' %>
-<% end %>
+
 
 <div id="comment-container">
     <% @post.comments.each do |c| %>
@@ -46,3 +53,19 @@
         </div>
     <% end %>
 </div> 
+
+<style>
+input, input:focus {
+    border: none !important;
+    overflow: auto;
+    outline: none !important;
+
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+
+    font-size: 12.8px !important;
+}
+</style>
