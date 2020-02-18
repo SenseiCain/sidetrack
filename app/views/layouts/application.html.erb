@@ -20,6 +20,19 @@
             <%= content_tag(:a, 'Sidetrack', href: root_path, style: "text-decoration:none; color: inherit", class: 'text-black') %>
           </h3>
         </div>
+        <div class="col d-flex align-items-center justify-content-end">
+          <% if current_user %>
+            <h4 class="m-0">
+              <%= content_tag(:a, @user.name, href: root_path, style: "text-decoration:none; color: inherit", class: 'text-black') %>
+            </h4>
+            -
+            <%= form_tag logout_path do %>
+              <input class="btn-link border-0" type=submit value='logout'>
+            <% end %>
+          <% else %>
+            <%= link_to 'Log In', login_path %>
+          <% end %>
+        </div>
       </div>
     </header>
 
