@@ -25,16 +25,21 @@
         </div>
         <div class="col d-flex align-items-center justify-content-end">
           <% if @user %>
-            <h4 class="m-0">
-              <%= content_tag(:a, @user.name, href: root_path, style: "text-decoration:none; color: inherit", class: 'text-black') %>
-            </h4>
-            -
-            <%= form_tag logout_path do %>
-              <input class="btn-link border-0" type=submit value='logout'>
-            <% end %>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle bg-transparent" style="border: none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= @user.name %>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Profile</a>
+                <%= form_tag logout_path do %>
+                  <input class="btn-link border-0 dropdown-item" type=submit value='logout'>
+                <% end %>
+              </div>
+            </div>
           <% else %>
             <%= link_to 'Log In', login_path %>
           <% end %>
+
         </div>
       </div>
     </header>
