@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
   before_action :set_categories, :set_user
   skip_before_action :set_categories, only: [:create, :update, :destroy]
   skip_before_action :set_user, only: [:create, :update, :destroy]
