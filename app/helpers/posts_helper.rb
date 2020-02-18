@@ -29,40 +29,38 @@ module PostsHelper
         end
         
         def count_tag
-            # Upvote & Downvote
-            # Vote count
-            content_tag(:div, @post.votes.count)
+           content_tag(:p, @post.votes.count, class: 'm-0 p-0')
         end
 
         def vote_tag(type)
             @content = ''
 
             if type == 'up'
-                @content = content_tag(:span, nil, class: 'fas fa-angle-up')
+                @content = image_tag('up-arrow.png')
             else
-                @content = content_tag(:span, nil, class: 'fas fa-angle-down')
+                @content = image_tag('down-arrow.png')
             end
 
-            link_to root_path, class: 'vote_btn' do
+            link_to root_path, class: 'vote_btn'do
                 @content
             end
         end
 
         def main
             content = safe_join([title_tag, categories_tag, info_tag])
-            inside = content_tag(:div, content, class: 'row')
+            inside = content_tag(:div, content, class: 'row px-2')
             content_tag(:div, inside, class: 'col-md-11 border justify-content-center')
         end
 
         def title_tag
-            header_tag = content_tag(:h5, @post.title, class: 'my-0 col-md-12 px-0')
-            content_tag(:a, header_tag, class: 'my-0', style: 'text-decoration: none; color: inherit', href: post_path(@post))
+            header_tag = content_tag(:p, @post.title, class: 'my-0 px-0')
+            content_tag(:a, header_tag, class: 'my-0 px-0 col-md-12', style: 'text-decoration: none; color: inherit', href: post_path(@post))
         end
 
         def categories_tag
             content_div = @post.categories.map{|c| 
-                content_tag :span, class: 'badge badge-info mr-1 text-white' do
-                    link_to c.name, "/?query[categories]=#{c.id}", style: 'text-decoration: none; color: white', class: 'py-0'
+                content_tag :span, class: 'badge badge-transparent mr-1 text-info px-0' do
+                    link_to c.name, "/?query[categories]=#{c.id}", style: 'text-decoration: none;', class: 'py-0'
                 end
             }
             content_tag(:div, safe_join(content_div), class: 'col-md-12 my-0 px-0 d-flex')
@@ -70,7 +68,7 @@ module PostsHelper
 
         def info_tag
             content = "#{@post.comments.count} Comments - #{@post.user.name} - #{format_date}"
-            content_tag(:p, content, class: 'col-md-12 small px-0 my-0')
+            content_tag(:p, content, class: 'col-md-12 small my-0 px-0')
         end
 
         def format_date
