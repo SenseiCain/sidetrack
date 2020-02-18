@@ -7,7 +7,12 @@ class SessionsController < ApplicationController
         @user = User.find_by(email: user_params[:email])
         return head(:forbidden) unless @user.authenticate(user_params[:password])
         session[:user_id] = @user.id
-        redirect_to root_path
+        
+        if session[:return_to]
+            redirect_to session.delete(:return_to)
+        else
+            redirect_to root_path
+        end
     end
 
     def destroy
