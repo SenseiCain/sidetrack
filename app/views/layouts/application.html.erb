@@ -21,7 +21,7 @@
           </h3>
         </div>
         <div class="col d-flex align-items-center justify-content-end">
-          <% if current_user %>
+          <% if @user %>
             <h4 class="m-0">
               <%= content_tag(:a, @user.name, href: root_path, style: "text-decoration:none; color: inherit", class: 'text-black') %>
             </h4>
