@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_categories
+  before_action :set_categories, :set_user
   skip_before_action :set_categories, only: [:create, :update, :destroy]
+  skip_before_action :set_user, only: [:create, :update, :destroy]
 
   def index
     @posts = Post.select_by_category_and_date(params[:query])
@@ -44,5 +45,9 @@ class PostsController < ApplicationController
 
   def set_categories
     @categories = Category.all
+  end
+
+  def set_user
+    @user = current_user
   end
 end
