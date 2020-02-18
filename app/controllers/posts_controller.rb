@@ -27,6 +27,7 @@ class PostsController < ApplicationController
       if @user
         render new_post_path
       else
+        session[:return_to] ||= request.referer
         redirect_to login_path
       end
     end
