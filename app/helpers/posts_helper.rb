@@ -38,8 +38,8 @@ module PostsHelper
 
         def main
             content = safe_join([title_tag, categories_tag, info_tag])
-            inside = content_tag(:div, content, class: 'row px-2')
-            content_tag(:div, inside, class: 'col-md-11 border justify-content-center')
+            inside = content_tag(:div, content, class: 'row px-2 d-flex flex-column align-items-center m-0')
+            content_tag(:div, inside, class: 'col-md-11 border py-1 px-2')
         end
 
         def title_tag
@@ -48,11 +48,16 @@ module PostsHelper
         end
 
         def categories_tag
-            content_div = @post.categories.map{|c| 
-                content_tag :span, class: 'badge badge-transparent mr-1 text-info px-0' do
-                    link_to c.name, "/?query[categories]=#{c.id}", style: 'text-decoration: none;', class: 'py-0'
-                end
-            }
+            if @post.categories.any?
+                content_div = @post.categories.map{|c| 
+                    content_tag :span, class: 'badge badge-transparent mr-2 text-info px-0' do
+                        link_to c.name, "/?query[categories]=#{c.id}", style: 'text-decoration: none;', class: 'py-0'
+                    end
+                }
+            else
+                content_div = [content_tag(:div, '', class: 'col-md-12', style: 'height: 18px')]
+            end
+
             content_tag(:div, safe_join(content_div), class: 'col-md-12 my-0 px-0 d-flex')
         end
 
