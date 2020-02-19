@@ -1,14 +1,16 @@
 class VotesController < ApplicationController
     def create
-        @vote = Vote.find_or_initialize_by(user_id: vote_params[:user_id], post_id: vote_params[:post_id])
-        # byebug
-        
-        if @vote.new_record?
-            @vote.status = to_boolean(vote_params[:status])
-            @vote.save
-        elsif @vote.status != to_boolean(vote_params[:status])
-            @vote.status = to_boolean(vote_params[:status])
-            @vote.save
+        if current_user
+            @vote = Vote.find_or_initialize_by(user_id: vote_params[:user_id], post_id: vote_params[:post_id])
+            # byebug
+            
+            if @vote.new_record?
+                @vote.status = to_boolean(vote_params[:status])
+                @vote.save
+            elsif @vote.status != to_boolean(vote_params[:status])
+                @vote.status = to_boolean(vote_params[:status])
+                @vote.save
+            end
         end
         redirect_to root_path
     end
