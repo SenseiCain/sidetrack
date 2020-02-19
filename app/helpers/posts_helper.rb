@@ -48,9 +48,9 @@ module PostsHelper
             end
 
             content = safe_join([
-                content_tag(:input, '', type: 'hidden', name: 'vote[:status]', value: status),
-                content_tag(:input, '', type: 'hidden', name: 'vote[:user_id]', value: user_id),
-                content_tag(:input, '', type: 'hidden', name: 'vote[:post_id]', value: @post.id),
+                content_tag(:input, '', type: 'hidden', name: 'vote[status]', value: status),
+                content_tag(:input, '', type: 'hidden', name: 'vote[user_id]', value: user_id),
+                content_tag(:input, '', type: 'hidden', name: 'vote[post_id]', value: @post.id),
                 image_submit_tag(image)
             ])
 
