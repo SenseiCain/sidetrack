@@ -1,12 +1,6 @@
 <div class="container border mb-5">
     <div class="row border-bottom">
-        <div class="col-md-1 border-right">
-            <div class="row d-flex flex-column align-items-center justify-content-center" style="height: 100%">
-                <%= image_tag('up-arrow.png') %>
-                <%= @post.rating %>
-                <%= image_tag('down-arrow.png') %>
-            </div>
-        </div>
+        <%= display_vote_tag(@post, @vote, @user) %>
         <div class="col-md-11">
             <div class="border-bottom p-2 small">
                 <%= @post.title %>
@@ -31,10 +25,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 <div id="comment-container">
     <p>Comments</p>
