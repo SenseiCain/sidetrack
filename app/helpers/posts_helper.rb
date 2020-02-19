@@ -58,7 +58,7 @@ module PostsHelper
 
         def info_tag
             content = "#{@post.comments.count} Comments - #{@post.user.name} - #{format_date}"
-            content_tag(:p, content, class: 'col-md-12 small my-0 px-0')
+            content_tag(:p, content, class: 'col-md-12 small my-0 px-0 text-muted')
         end
 
         def format_date
