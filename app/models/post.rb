@@ -32,6 +32,12 @@ class Post < ApplicationRecord
         end
     end
 
+    def rating
+        upvotes = self.votes.where(status: true).count
+        downvotes = self.votes.where(status: false).count
+        upvotes - downvotes
+    end
+
     private
 
     def make_post_title_case

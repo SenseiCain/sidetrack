@@ -29,7 +29,7 @@ module PostsHelper
         end
         
         def count_tag
-           content_tag(:p, @post.votes.count, class: 'm-0 p-0')
+           content_tag(:p, @post.rating, class: 'm-0 p-0')
         end
 
         def arrow_tag(type)
