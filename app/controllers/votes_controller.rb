@@ -1,5 +1,10 @@
 class VotesController < ApplicationController
     def create
-        raise params.inspect
+    end
+
+    private
+
+    def vote_params
+        params.require(:vote).permit(:status, :user_id, :post_id)
     end
 end
