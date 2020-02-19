@@ -23,7 +23,7 @@
         <div class="col-md-12 px-0">
             <%= form_for(@comment) do |f| %>
                 <div class="input-group align-items-center">
-                    <%= f.hidden_field :post_id, value: @user.id %>
+                    <%= f.hidden_field :post_id, value: @post.id %>
                     <%= f.text_field :description, class: 'form-control border-none py-0 form-control-sm', placeholder: 'Comment...' %>
                     <%= f.submit 'Submit', class: 'btn btn-transparent btn-small text-info py-0 form-control-sm' %>
                 </div>
