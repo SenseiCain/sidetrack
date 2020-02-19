@@ -33,11 +33,11 @@ end
 
     # GENERATE UPVOTES & DOWNVOTES
     if i > 10
-        Vote.create_upvote(User.all.sample, post)
-        Vote.create_upvote(User.all.sample, post)
+        Vote.create(user: User.all.sample, post: post, status: true)
+        Vote.create(user: User.all.sample, post: post, status: true)
     else
-        Vote.create_downvote(User.all.sample, post)
-        Vote.create_downvote(User.all.sample, post)
+        Vote.create(user: User.all.sample, post: post, status: false)
+        Vote.create(user: User.all.sample, post: post, status: false)
     end
 
     # GENERATE COMMENTS
