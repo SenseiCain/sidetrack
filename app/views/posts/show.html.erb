@@ -21,14 +21,12 @@
     </div>
     <div class="row">
         <div class="col-md-12 px-0">
-            <form action="" accept-charset="UTF-8" method="get">
+            <%= form_for(@comment) do |f| %>
                 <div class="input-group align-items-center">
-                    <input type="text" name="search" id="search" placeholder="Comment.." class="form-control border-none py-0 form-control-sm">
-                    <span class="input-group-btn">
-                        <input type="submit" name="commit" value="Submit" class="btn btn-transparent btn-small text-info py-0 form-control-sm" data-disable-with="Search">
-                    </span> 
+                    <%= f.text_field :description, class: 'form-control border-none py-0 form-control-sm', placeholder: 'Comment...' %>
+                    <%= f.submit 'Submit', class: 'btn btn-transparent btn-small text-info py-0 form-control-sm' %>
                 </div>
-            </form>
+            <% end %>
         </div>
     </div>
 </div>
