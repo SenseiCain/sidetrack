@@ -1,6 +1,6 @@
 <% if @posts %>
     <% @posts.each do |p| %>
-        <%= display_post_tag(p) %>
+        <%= display_post_tag(p, @vote, @user) %>
     <% end %>
 <% end %>
 
