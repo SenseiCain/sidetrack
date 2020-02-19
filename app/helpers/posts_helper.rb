@@ -8,7 +8,7 @@ module PostsHelper
         vote = VoteTag.new(self, post, vote, user).html
         content = safe_join([vote, main])
         @uid = SecureRandom.hex(6)
-        content_tag(:div, content, id: @uid, class: 'row m-0')
+        content_tag(:div, content, id: @uid, class: 'row m-0 border')
     end
 
     def display_vote_tag(post, vote, user)
@@ -32,7 +32,7 @@ module PostsHelper
         def main
             content = safe_join([title_tag, categories_tag, info_tag])
             inside = content_tag(:div, content, class: 'row px-2 d-flex flex-column align-items-center m-0')
-            content_tag(:div, inside, class: 'col-md-11 border py-1 px-2')
+            content_tag(:div, inside, class: 'col-md-11 py-1 px-2')
         end
 
         def title_tag
@@ -91,7 +91,7 @@ module PostsHelper
 
         def vote
             content = safe_join([arrow_tag('up'), count_tag, arrow_tag('down')])
-            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between m-0 px-0 py-0 border')
+            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between m-0 px-0 py-0 border-right')
         end
         
         def count_tag
