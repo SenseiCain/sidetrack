@@ -24,26 +24,16 @@ module PostsHelper
         delegate :link_to, :content_tag, :image_tag, :raw, :safe_join, to: :view
 
         def vote
-            content = safe_join([vote_tag('up'), count_tag, vote_tag('down')])
-            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between m-0 px-0 py-0 border')
+            content_tag(:div, vote_tag, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between m-0 px-0 py-0 border')
         end
         
         def count_tag
            content_tag(:p, @post.votes.count, class: 'm-0 p-0')
         end
 
-        def vote_tag(type)
-            @content = ''
-
-            if type == 'up'
-                @content = image_tag('up-arrow.png')
-            else
-                @content = image_tag('down-arrow.png')
-            end
-
-            link_to root_path, class: 'vote_btn'do
-                @content
-            end
+        def vote_tag
+            content = safe_join([image_tag('up-arrow.png'), count_tag, image_tag('down-arrow.png')])
+            content_tag(:div, content, class: 'row d-flex flex-column align-items-center justify-content-center', style: 'height: 100%')
         end
 
         def main

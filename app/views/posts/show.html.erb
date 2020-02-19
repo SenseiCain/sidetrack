@@ -1,6 +1,12 @@
 <div class="container border">
     <div class="row border-bottom">
-        <div class="col-md-1 border-right"></div>
+        <div class="col-md-1 border-right">
+            <div class="row d-flex flex-column align-items-center justify-content-center" style="height: 100%">
+                <%= image_tag('up-arrow.png') %>
+                <%= @post.votes.count %>
+                <%= image_tag('down-arrow.png') %>
+            </div>
+        </div>
         <div class="col-md-11">
             <div class="border-bottom p-2 small">
                 <%= @post.title %>
