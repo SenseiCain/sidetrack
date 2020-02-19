@@ -57,9 +57,9 @@
           </div>
           <div class='p-2'>
             <%= form_tag root_path, :method => 'get' do |f| %>
-              <h6>Categories:</h6>
+              <p class="mb-1">Categories:</p>
               <%= collection_select(:query, :categories, @categories, :id, :name) %>
-              <h6 class="pt-2">Date:</h6>
+              <p class="pt-2 mt-2 mb-1">Date:</p>
 
               <!-- REFACTOR THIS!!! -->
               <select name="query[date]" id="query_date">
