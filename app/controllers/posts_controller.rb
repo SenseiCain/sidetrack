@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.select_by_category_and_date(params[:query])
+    @vote = Vote.new()
   end
 
   def show
