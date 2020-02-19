@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "bootstrap.min" %>
+    <%= stylesheet_link_tag "application" %>
     <script src="https://kit.fontawesome.com/47144c595f.js" crossorigin="anonymous"></script>
 
   </head>
@@ -14,7 +15,7 @@
 
     <header id="header" class="container bg-info mb-2">
       <div class='row'>
-        <div class="col d-flex align-items-center">
+        <div class="col d-flex align-items-center text-white">
           <i class="fas fa-lg fa-dog pr-2"></i>
           <h3 class="m-0">
             <%= content_tag(:a, 'Sidetrack', href: root_path, style: "text-decoration:none; color: inherit", class: 'text-black') %>
