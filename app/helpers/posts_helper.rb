@@ -3,13 +3,13 @@ include Rails.application.routes.url_helpers
 module PostsHelper
     # REFERENCE ARTICLE - https://www.toptal.com/ruby-on-rails/rails-helper-bootstrap-carousel
 
-    def display_post_tag(post)
-        PostTag.new(self, post).html
+    def display_post_tag(post, vote, user)
+        PostTag.new(self, post, vote, user).html
     end
 
     class PostTag
-        def initialize(view, post)
-            @view, @post = view, post
+        def initialize(view, post, vote, user)
+            @view, @post, @vote, @user = view, post, vote, user
             @uid = SecureRandom.hex(6)
         end
 
@@ -21,20 +21,47 @@ module PostsHelper
         private
 
         attr_accessor :view, :post, :uid
-        delegate :link_to, :content_tag, :image_tag, :raw, :safe_join, to: :view
+        delegate :link_to, :content_tag, :image_tag, :image_submit_tag, :hidden_field_tag, :raw, :safe_join, :form_for, to: :view
 
         def vote
-            content_tag(:div, vote_tag, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between m-0 px-0 py-0 border')
+            content = safe_join([arrow_tag('up'), count_tag, arrow_tag('down')])
+            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between m-0 px-0 py-0 border')
         end
         
         def count_tag
            content_tag(:p, @post.votes.count, class: 'm-0 p-0')
         end
 
-        def vote_tag
-            content = safe_join([image_tag('up-arrow.png'), count_tag, image_tag('down-arrow.png')])
-            content_tag(:div, content, class: 'row d-flex flex-column align-items-center justify-content-center', style: 'height: 100%')
+        def arrow_tag(type)
+            if @user
+                user_id = @user.id
+            else
+                user_id = nil
+            end
+
+            if type == 'up'
+                status = true
+                image = 'up-arrow.png'
+            else
+                status = false
+                image = 'down-arrow.png'
+            end
+
+            content = safe_join([
+                content_tag(:input, '', type: 'hidden', name: 'vote[:status]', value: status),
+                content_tag(:input, '', type: 'hidden', name: 'vote[:user_id]', value: user_id),
+                content_tag(:input, '', type: 'hidden', name: 'vote[:post_id]', value: @post.id),
+                image_submit_tag(image)
+            ])
+
+            content2 = form_for @vote do |f|
+                content
+            end
+
+            content_tag(:div, content2, class: 'row d-flex flex-column align-items-center justify-content-center', style: 'height: 100%')
         end
+
+
 
         def main
             content = safe_join([title_tag, categories_tag, info_tag])
