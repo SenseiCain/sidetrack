@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-    def show
+    before_action :set_categories, :set_user
 
+    def show
     end
 
     def create
