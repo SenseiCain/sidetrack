@@ -55,7 +55,10 @@ module PostsHelper
         end
 
         def info_tag
-            content = "#{@post.comments.count} Comments - #{@post.user.name} - #{format_date}"
+            comments = @post.comments.count.to_s + ' Comments - '
+            user_link = link_to @user.name.gsub('-', ' ') + ' - ', user_path(@user.url_formatted_name), class: "hovered"
+            date = format_date
+            content = safe_join([comments, user_link, date])
             content_tag(:p, content, class: 'col-md-12 small my-0 px-0 text-muted')
         end
 

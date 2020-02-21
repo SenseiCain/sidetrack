@@ -1,7 +1,7 @@
 <div>
 <% if @posts %>
         <% @posts.each do |p| %>
-            <%= display_post_tag(p, @vote, @current_user) %>
+            <%= display_post_tag(p, @vote, p.user) %>
         <% end %>
     <% end %>
 </div>
@@ -14,5 +14,9 @@
 
     .vote_btn:hover{
         color: #17a2b8 !important;
+    }
+
+    .hovered:hover{
+        color: #111111 !important;
     }
 </style>
