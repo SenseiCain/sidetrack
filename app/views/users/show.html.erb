@@ -1,9 +1,10 @@
 <%= @reference_user.name %>
 
-<div>
-    <% if @posts %>
+<% if @posts %>
+    <div>
+        <p>Posts</p>
         <% @posts.each do |p| %>
             <%= display_post_tag(p, @vote, p.user) %>
         <% end %>
-    <% end %>
-</div>
+    </div>
+<% end %>

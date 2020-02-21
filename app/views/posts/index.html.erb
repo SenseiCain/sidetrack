@@ -1,10 +1,10 @@
-<div>
 <% if @posts %>
+    <div>
         <% @posts.each do |p| %>
             <%= display_post_tag(p, @vote, p.user) %>
         <% end %>
-    <% end %>
-</div>
+    </div>
+<% end %>
 
 <style>
     .vote_btn{
