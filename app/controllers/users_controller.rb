@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_categories, :set_user
+    before_action :set_categories, :set_current_user
 
     def show
     end

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
         @categories = Category.all
     end
     
-    def set_user
+    def set_current_user
         @current_user = current_user
     end
 end
