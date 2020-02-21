@@ -51,11 +51,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :description, :category_ids => [])
   end
 
-  def set_categories
-    @categories = Category.all
-  end
-
-  def set_user
-    @user = current_user
-  end
 end
