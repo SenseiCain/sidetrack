@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
     def create
-        if @user = current_user
+        if @current_user = current_user
             @comment = Comment.new(description: comment_params[:description])
-            @comment.user = @user
+            @comment.user = @current_user
             @post = Post.find_by(id: comment_params[:post_id])
             @comment.post = @post
 

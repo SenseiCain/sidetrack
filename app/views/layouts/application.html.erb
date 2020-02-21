@@ -26,10 +26,10 @@
           </h3>
         </div>
         <div class="col d-flex align-items-center justify-content-end">
-          <% if @user %>
+          <% if @current_user %>
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle bg-transparent" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <%= @user.name %>
+                  <%= @current_user.name %>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Profile</a>

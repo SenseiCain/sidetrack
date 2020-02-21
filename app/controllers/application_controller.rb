@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
     end
     
     def set_user
-        @user = current_user
+        @current_user = current_user
     end
 end

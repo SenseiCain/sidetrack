@@ -1,6 +1,6 @@
 <div class="container border mb-5">
     <div class="row border-bottom">
-        <%= display_vote_tag(@post, @vote, @user) %>
+        <%= display_vote_tag(@post, @vote, @current_user) %>
         <div class="col-md-11">
             <div class="border-bottom p-2 small">
                 <%= @post.title %>
