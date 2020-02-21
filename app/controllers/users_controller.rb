@@ -2,8 +2,6 @@ class UsersController < ApplicationController
     before_action :set_categories, :set_current_user
 
     def show
-        # raise params.inspect
-        # byebug
         if @reference_user = User.find_by(name: url_decode(params[:id]))
 
         else
