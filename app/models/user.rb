@@ -8,7 +8,11 @@ class User < ApplicationRecord
     validates :name, presence: true
     validates :email, presence: true, uniqueness: true
 
-    def url_formatted_name
-        name.gsub!(' ', '-')
+    def url_encoded_name
+        name.gsub!(' ', '-').downcase
+    end
+
+    def display_formatted_name
+        name.titlecase
     end
 end

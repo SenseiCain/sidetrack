@@ -16,6 +16,6 @@ class UsersController < ApplicationController
     private
 
     def url_decode(name)
-        name.gsub!('-', ' ')
+        name.gsub!('-', ' ').titlecase
     end
 end
