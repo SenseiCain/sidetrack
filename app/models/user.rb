@@ -9,7 +9,7 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true
 
     def url_encoded_name
-        name.gsub!(' ', '-').downcase
+        name.gsub(' ', '-').downcase
     end
 
     def display_formatted_name
