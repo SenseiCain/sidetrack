@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
     def show
         if @reference_user = User.find_by(name: url_decode(params[:id]))
-
+            @posts = @reference_user.posts
+            @vote = Vote.new()
         else
             redirect_to root_path
         end
