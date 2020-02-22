@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
 
   before_action :set_categories, :set_current_user
-  skip_before_action :set_categories, only: [:destroy]
-  skip_before_action :set_current_user, only: [:destroy]
 
   def index
     @posts = Post.select_by_category_and_date(params[:query])
@@ -60,6 +58,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find_by(id: params[:id])
+
+    if @post && @post.user == @current_user
+      @post.destroy
+    end
+
+    redirect_to root_path
   end
 
   private
