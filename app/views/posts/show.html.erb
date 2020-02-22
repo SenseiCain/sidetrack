@@ -10,8 +10,9 @@
             </div>
         </div>
     </div>
-    <div class="row m-0 py-2 border-bottom small">
+    <div class="row m-0 py-1 border-bottom small d-flex justify-content-between align-items-center">
         <p class="p-0 m-0">By <span class="text-info"><%= link_to @post.user.display_formatted_name, user_path(@post.user.url_encoded_name) %></span></p>
+        <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-transparent btn-small text-info py-0 my-0 px-0' %>
     </div>
     <div class="row px-2">
         <div class="col-md-12 px-0">
@@ -19,7 +20,7 @@
                 <div class="input-group align-items-center">
                     <%= f.hidden_field :post_id, value: @post.id %>
                     <%= f.text_field :description, class: 'form-control border-none py-0 form-control-sm', placeholder: 'Comment...' %>
-                    <%= f.submit 'Submit', class: 'btn btn-transparent btn-small text-info py-0 form-control-sm' %>
+                    <%= f.submit 'Submit', class: 'btn btn-transparent btn-small text-info py-0 px-1 form-control-sm' %>
                 </div>
             <% end %>
         </div>
