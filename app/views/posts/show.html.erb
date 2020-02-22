@@ -40,7 +40,14 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <p class="small mb-1 text-info"><%= link_to c.user.display_formatted_name, user_path(c.user.url_encoded_name) %></p>
+                            <div class="d-flex justify-content-between mb-1">
+                                <p class="small mb-1 text-info"><%= link_to c.user.display_formatted_name, user_path(c.user.url_encoded_name) %></p>
+                                <% if c.user == @current_user %>
+                                    <%= form_for c, method: :delete do |f| %>
+                                        <%= f.submit 'Delete', class: 'small mb-1 p-0 text-danger bg-transparent btn-custom' %>
+                                    <% end %>
+                                <% end %>
+                            </div>
                             <p class="card-text small"><%= c.description %></p>
                         </div>
                     </div>
@@ -51,7 +58,7 @@
 </div> 
 
 <style>
-input[type="text"], input:focus {
+    input[type="text"], input:focus {
         border: none !important;
         overflow: auto;
         outline: none !important;
@@ -63,5 +70,11 @@ input[type="text"], input:focus {
         resize: none; /*remove the resize handle on the bottom right*/
 
         font-size: 12.8px !important;
+    }
+
+    .btn-custom{
+        border: none !important;
+        outline: none !importnat;
+        cursor: pointer;
     }
 </style>
