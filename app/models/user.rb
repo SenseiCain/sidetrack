@@ -6,7 +6,10 @@ class User < ApplicationRecord
     has_many :votes
 
     validates :name, presence: true
-    validates :email, presence: true, uniqueness: true
+    validates :email, presence: true, uniqueness: true, confirmation: true
+    validates_confirmation_of :email
+    validates :password, presence: true, confirmation: true
+    validates_confirmation_of :password
 
     def url_encoded_name
         name.gsub(' ', '-').downcase
