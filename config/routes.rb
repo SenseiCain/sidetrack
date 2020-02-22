@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create]
   resources :votes, only: [:create]
-  resources :users, only: [:show, :create], path: 'u'
+  resources :users, only: [:show, :create, :new], path: 'u'
 end

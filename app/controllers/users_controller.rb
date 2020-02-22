@@ -10,6 +10,11 @@ class UsersController < ApplicationController
         end
     end
 
+    def new
+        @user = User.new
+        render layout: 'sessions'
+    end
+
     def create
 
     end
