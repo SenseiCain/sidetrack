@@ -1,2 +1,33 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<div class="row mx-0 border">
+    <div class="col-md-12 px-0">
+        <%= bootstrap_form_for @post do |f| %>
+            <div class="px-2">
+                <div class="px-2">
+                    <p class="my-0 px-2 py-1 border-bottom-only">Create a Post</p>   
+                </div>
+                <%= f.text_field :title, label_as_placeholder: true, class: 'form-control form-control-sm my-0 border-bottom-only p-2 small', wrapper: { class: 'my-0 border-none px-2'} %>
+                <%= f.text_area :description, label_as_placeholder: true, class: 'form-control py-1 form-control-sm my-0 border-bottom-only p-2 small', wrapper: { class: 'my-0 px-2'} %>
+                <div class="input-group justify-content-between">
+                    <div class="px-2 py-1">
+                        <%= collection_check_boxes(:post, :category_ids, @categories, :id, :name, { }, { class: 'ml-2 mr-1 small text-muted'}) %>
+                    </div>
+                    <%= f.submit 'Update', class: 'btn btn-transparent btn-small text-info py-0 form-control-sm'%>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<style>
+    input[type="text"]{
+        border-radius: 0 !important;
+        
+    }
+
+    .border-bottom-only{
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 1px solid #dee2e6 !important;
+    }
+</style>

@@ -36,10 +36,27 @@ class PostsController < ApplicationController
   end
 
   def edit
-    
+    @post = Post.find_by(id: params[:id])
+
+    if @post && @post.user == @current_user
+
+    else
+      redirect_to root_path
+    end
   end
 
   def update
+    @post = Post.find_by(id: params[:id])
+
+    if @post && @post.user == @current_user
+      if @post.update(post_params)
+        redirect_to post_path(@post)
+      else
+        render :edit
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
