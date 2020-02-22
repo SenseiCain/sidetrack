@@ -3,7 +3,7 @@
         <%= bootstrap_form_for @post do |f| %>
             <div class="px-2">
                 <div class="px-2">
-                    <p class="my-0 px-2 py-1 border-bottom-only">Create a Post</p>   
+                    <p class="my-0 px-2 py-1 border-bottom-only">Update Your Post</p>   
                 </div>
                 <%= f.text_field :title, label_as_placeholder: true, class: 'form-control form-control-sm my-0 border-bottom-only p-2 small', wrapper: { class: 'my-0 border-none px-2'} %>
                 <%= f.text_area :description, label_as_placeholder: true, class: 'form-control py-1 form-control-sm my-0 border-bottom-only p-2 small', wrapper: { class: 'my-0 px-2'} %>
