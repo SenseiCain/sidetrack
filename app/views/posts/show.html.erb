@@ -10,10 +10,10 @@
             </div>
         </div>
     </div>
-    <div class="row p-2 border-bottom small">
+    <div class="row m-0 py-2 border-bottom small">
         <p class="p-0 m-0">By <span class="text-info"><%= link_to @post.user.display_formatted_name, user_path(@post.user.url_encoded_name) %></span></p>
     </div>
-    <div class="row">
+    <div class="row px-2">
         <div class="col-md-12 px-0">
             <%= form_for(@comment) do |f| %>
                 <div class="input-group align-items-center">
