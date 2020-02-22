@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         @user = User.find_by(email: user_params[:email])
 
         if @user && @user.authenticate(user_params[:password])
-            session[:user_id] = @user.id
+            login
         
             if session[:return_to]
                 redirect_to session.delete(:return_to)
