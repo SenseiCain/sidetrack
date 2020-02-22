@@ -16,10 +16,20 @@ class UsersController < ApplicationController
     end
 
     def create
-
+        @user = User.new(user_params)
+        if @user.save
+            session[:user_id] = @user.id
+            redirect_to root_path
+        else
+            render :new, layout: 'sessions'
+        end
     end
 
     private
+
+    def user_params
+        params.require(:user).permit(:name, :email, :email_confirmation, :password, :password_confirmation)
+    end
 
     def url_decode(name)
         name.gsub!('-', ' ').titlecase
