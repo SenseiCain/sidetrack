@@ -3,17 +3,16 @@
 
     <div class="row">
         <div class="col-md-12 px-0">
-            <%= bootstrap_form_for @user, url: login_path do |f| %>
+            <%= bootstrap_form_for @user do |f| %>
                 <%= f.text_field :name, label_as_placeholder: true, required: true %>
                 <%= f.email_field :email, label_as_placeholder: true, required: true %>
                 <%= f.email_field :email_confirmation, label_as_placeholder: true, required: true %>
                 <%= f.password_field :password, label_as_placeholder: true, required: true %>
                 <%= f.password_field :password_confirmation, label_as_placeholder: true, required: true %>
-                <div class="form-actions text-center border-bottom pb-3">
+                <div class="form-actions text-center">
                     <%= f.submit 'Submit', class: 'btn btn-light btn-small text-info py-0 form-control-sm' %>
                 </div>
             <% end %>
-            <%= content_tag(:a, "Register", class: "btn btn-light btn-small text-info py-0 form-control-sm mt-2") %>
         </div>
     </div>
 </div>
