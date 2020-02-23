@@ -3,16 +3,11 @@ class CommentsController < ApplicationController
 
     def create
         if @current_user
-            @comment = Comment.new(description: comment_params[:description])
-            @comment.user = @current_user
             @post = Post.find_by(id: comment_params[:post_id])
-            @comment.post = @post
+            @comment = Comment.new(description: comment_params[:description], user: @current_user, post: @post)
+            @comment.save
 
-            if @comment.save
-                redirect_to post_path(@post)
-            else
-                redirect_to post_path(@post)
-            end
+            redirect_to post_path(@post)
         else
             session[:return_to] ||= request.referer
             redirect_to login_path
@@ -25,10 +20,9 @@ class CommentsController < ApplicationController
 
         if @comment && @comment.user = @current_user
             @comment.destroy
-            redirect_to post_path(@post)
-        else
-            redirect_to root_path
         end
+
+        redirect_to post_path(@post)
     end
 
     private
