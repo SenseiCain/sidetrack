@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   before_action :set_categories, :set_current_user
 
   def index
@@ -24,8 +23,8 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post)
     else
-      if @user
-        render new_post_path
+      if @current_user
+        render :new
       else
         session[:return_to] ||= request.referer
         redirect_to login_path
@@ -36,9 +35,7 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find_by(id: params[:id])
 
-    if @post && @post.user == @current_user
-
-    else
+    unless @post && @post.user == @current_user
       redirect_to root_path
     end
   end
