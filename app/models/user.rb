@@ -14,8 +14,10 @@ class User < ApplicationRecord
 
     before_save :downcase_name
 
-    def self.create_from_hash!(hash)
-        create(name: hash['info']['name'], email: hash['info']['email'], password: ('0'..'z').to_a.shuffle.first(8).join)
+    def self.find_or_create_from_hash!(hash)
+        unless @user = find_by(email: hash['info']['email'])
+            @user = create(name: hash['info']['name'], email: hash['info']['email'], password: ('0'..'z').to_a.shuffle.first(8).join)
+        end
     end
 
     def url_encoded_name

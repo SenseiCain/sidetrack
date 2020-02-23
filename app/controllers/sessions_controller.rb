@@ -7,12 +7,12 @@ class SessionsController < ApplicationController
 
     def create
         if auth_hash
-
+            
             unless @auth = Authorization.find_from_hash(auth_hash)
-                @auth = Authorization.create_from_hash(auth_hash, current_user)
+                @user = User.find_or_create_from_hash!(auth_hash)
+                @auth = Authorization.create_from_hash(auth_hash, @user)
             end
 
-            @user = @auth.user
             login
 
             redirect_to root_path
