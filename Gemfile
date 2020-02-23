@@ -24,6 +24,8 @@ gem "bootstrap_form", "~> 4.0"
 
 gem 'faker'
 
+gem 'dotenv-rails'
+
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-google'
