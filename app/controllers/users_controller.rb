@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     before_action :set_categories, :set_current_user
 
     def show
+
         if @reference_user = User.find_by(name: url_decode(params[:id]))
             @posts = @reference_user.posts
             @vote = Vote.new()
@@ -32,6 +33,11 @@ class UsersController < ApplicationController
     end
 
     def url_decode(name)
-        name.gsub!('-', ' ').titlecase
+
+        if name.match(/-/)
+            name.gsub('-', ' ')
+        end
+
+        name.downcase
     end
 end
