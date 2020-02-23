@@ -7,7 +7,15 @@ class SessionsController < ApplicationController
 
     def create
         if auth_hash
-            # byebug
+
+            unless @auth = Authorization.find_from_hash(auth_hash)
+                @auth = Authorization.create_from_hash(auth_hash, current_user)
+            end
+
+            @user = @auth.user
+            login
+
+            redirect_to root_path
         else
 
             @user = User.find_by(email: user_params[:email])
