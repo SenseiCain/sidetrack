@@ -8,7 +8,6 @@ class Authorization < ApplicationRecord
     end
     
     def self.create_from_hash(hash, user = nil)
-
         Authorization.create(user: user, uid: hash['uid'], provider: hash['provider'])
     end
 end
