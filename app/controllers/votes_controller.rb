@@ -4,7 +4,8 @@ class VotesController < ApplicationController
             @vote = Vote.find_or_initialize_by(user_id: vote_params[:user_id], post_id: vote_params[:post_id])
             
             if @vote.new_record?
-                @vote.create(status: params_status)
+                @vote.status = params_status
+                @vote.save
             elsif @vote.status != params_status
                 @vote.flip_vote
             end
