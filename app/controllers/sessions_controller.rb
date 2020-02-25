@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
 
     def create
         if auth_hash
-            
             if @auth = Authorization.find_from_hash(auth_hash)
                 @user = @auth.user
             else
