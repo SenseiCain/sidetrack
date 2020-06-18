@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_categories, :set_current_user
+  before_action :set_categories, :set_current_user, :find_post
+  skip_before_action :find_post, only: [:index, :new, :create]
 
   def index
     @posts = Post.select_by_category_and_date(params[:query])
@@ -7,7 +8,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by_id(params[:id])
     @comment = Comment.new()
     @vote = Vote.new()
   end
@@ -17,8 +17,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user = @current_user
+    # @post = Post.new(post_params)
+    @post = @current_user.posts.build(post_params)
 
     if @post.save
       redirect_to post_path(@post)
@@ -33,7 +33,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find_by(id: params[:id])
 
     unless @post && @post.user == @current_user
       redirect_to root_path
@@ -41,7 +40,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find_by(id: params[:id])
 
     if @post && @post.user == @current_user
       if @post.update(post_params)
@@ -55,7 +53,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find_by(id: params[:id])
 
     if @post && @post.user == @current_user
       @post.destroy
@@ -69,5 +66,18 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :description, :category_ids => [])
   end
+
+  def find_post
+    @post = Post.find_by(id: params[:id])
+  end
+
+  # '/posts/:id/comments/new - Comments#new'
+  # '/posts/:id/comments/create - Comments#create'
+
+  # def new
+  #   @comment = Comment.new()
+  #   @post = Post.find_by(id: params[:id])
+  #   @comment.post = @post
+  # end
 
 end

@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
     def self.find_or_create_from_hash!(hash)
         unless @user = find_by(email: hash['info']['email'])
-            @user = new(name: hash['info']['name'], email: hash['info']['email'], password: ('0'..'z').to_a.shuffle.first(8).join)
+            @user = new(name: hash['info']['name'], email: hash['info']['email'], password: SecureRandom.hex(6))
 
             if !hash[:info][:image].empty?
                 @user.image = hash[:info][:image]
