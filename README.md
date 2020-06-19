@@ -1,24 +1,29 @@
-# README
+# Sidetrack
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Reddit clone. This is a server-side rendered application using Rails and ActionView. Styled with Bootstrap.
 
-Things you may want to cover:
+## Screenshot
 
-* Ruby version
+<img src="https://raw.githubusercontent.com/SenseiCain/sidetrack/master/preview.png" width=500>
 
-* System dependencies
+## Getting started
 
-* Configuration
+Currently the application is only available to run locally.
 
-* Database creation
+First Fork & Clone this repo, then run the following commands.
+```
+bundle install
+rails db:create
+rails db:migrate
+rails s
+```
 
-* Database initialization
+There is seed data that can be applied if desired. Data is generated using the Faker gem.
+```
+rails db:seed
+```
 
-* How to run the test suite
+## Future Goals
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+After learning more about JS and RESTful APIs I see a large room for improvement in this application.
+Am considering recreating the application in a client-side rendered branch.
