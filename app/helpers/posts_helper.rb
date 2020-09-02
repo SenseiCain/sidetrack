@@ -32,12 +32,12 @@ module PostsHelper
         def main
             content = safe_join([title_tag, categories_tag, info_tag])
             inside = content_tag(:div, content, class: 'row px-2 d-flex flex-column align-items-center m-0')
-            content_tag(:div, inside, class: 'col-md-11 py-1 px-2')
+            content_tag(:div, inside, class: 'col-11 py-1 px-2')
         end
 
         def title_tag
             header_tag = content_tag(:p, @post.title, class: 'my-0 px-0')
-            content_tag(:a, header_tag, class: 'my-0 px-0 col-md-12', style: 'text-decoration: none; color: inherit', href: post_path(@post))
+            content_tag(:a, header_tag, class: 'my-0 px-0 col-12', style: 'text-decoration: none; color: inherit', href: post_path(@post))
         end
 
         def categories_tag
@@ -48,10 +48,10 @@ module PostsHelper
                     end
                 }
             else
-                content_div = [content_tag(:div, '', class: 'col-md-12', style: 'height: 18px')]
+                content_div = [content_tag(:div, '', class: 'col-12', style: 'height: 18px')]
             end
 
-            content_tag(:div, safe_join(content_div), class: 'col-md-12 my-0 px-0 d-flex')
+            content_tag(:div, safe_join(content_div), class: 'col-12 my-0 px-0 d-flex')
         end
 
         def info_tag
@@ -59,7 +59,7 @@ module PostsHelper
             user_link = link_to @user.display_formatted_name + ' - ', user_path(@user.url_encoded_name), class: "hovered"
             date = format_date
             content = safe_join([comments, user_link, date])
-            content_tag(:p, content, class: 'col-md-12 small my-0 px-0 text-muted')
+            content_tag(:p, content, class: 'col-12 small my-0 px-0 text-muted')
         end
 
         def format_date
@@ -94,7 +94,7 @@ module PostsHelper
 
         def vote
             content = safe_join([arrow_tag('up'), count_tag, arrow_tag('down')])
-            content_tag(:div, content, class: 'col-md-1 d-flex flex-column align-items-center justify-content-between m-0 px-0 py-0 border-right')
+            content_tag(:div, content, class: 'col-1 d-flex flex-column align-items-center justify-content-between m-0 px-0 py-0 border-right')
         end
         
         def count_tag
