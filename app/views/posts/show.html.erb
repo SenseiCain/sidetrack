@@ -1,7 +1,7 @@
 <div class="container border mb-5">
     <div class="row border-bottom">
         <%= display_vote_tag(@post, @vote, @current_user) %>
-        <div class="col-md-11">
+        <div class="col-11">
             <div class="border-bottom p-2 small">
                 <%= @post.title %>
             </div>
@@ -20,7 +20,7 @@
         <% end %>
     </div>
     <div class="row px-2">
-        <div class="col-md-12 px-0">
+        <div class="col-12 px-0">
             <%= form_for(@comment) do |f| %>
                 <div class="input-group align-items-center">
                     <%= f.hidden_field :post_id, value: @post.id %>
@@ -39,7 +39,7 @@
             <div class="card-body py-2 px-0">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <div class="d-flex justify-content-between mb-1">
                                 <p class="small mb-1 text-info"><%= link_to c.user.display_formatted_name, user_path(c.user.url_encoded_name) %></p>
                                 <% if c.user == @current_user %>
